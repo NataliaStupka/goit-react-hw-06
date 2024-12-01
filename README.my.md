@@ -52,8 +52,8 @@
 12. **redux-persist** - (npm i redux-persist) бібліотека як _LocalStorige_
     для Redux (документацію можна знайти в redux-toolkit через пошук 'Use with
     Redux-Persist). (1)другий та третій імпорт з докум.Redux-Persist вставляємо в
-    store; (2) копіюємо persistConfig, persistedReducer, middleware, persistor -
-    вставляємо в store; PersistGate - огорнути в main App;
+    **store**; (2) копіюємо persistConfig, persistedReducer, middleware, persistor -
+    вставляємо в **store**; Огорнути App в main; <PersistGate loading={null} persistor={persistor}><App/></PersistGate>
 
 ---- Home work #5 маршрутизатор, перехід по сторінкам;
 
