@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { contactReducer } from "./contactSlice"; //reducer
+import { contactReducer } from "./contactSlice"; //reducer contact
+import { filterReducer } from "./filtersSlice"; //reducer filter
 
 // *** 1.persist ====== копіюємо з з докум.Redux-Persist (для redux-persist)
 import {
@@ -21,12 +22,19 @@ const persistConfigContacts = {
   whitelist: ["items"], //вказую, що зберігаю (тільки items, а filter ні)
   //blacklist: ['filter'], //вказую, що не зберігаю
 };
+const persistConfigFilter = {
+  key: "filter",
+  version: 1,
+  storage,
+  blacklist: ["searchContact"],
+};
 
 //обгортка persist
 const persistedReducerContacts = persistReducer(
   persistConfigContacts,
   contactReducer
-); ////підключили contactReducer з todoSlice
+); ////підключили contactReducer з Slice
+const persistReducerFilter = persistReducer(persistConfigFilter, filterReducer);
 //=========
 
 //підключаємо counterReducer
@@ -34,6 +42,7 @@ const persistedReducerContacts = persistReducer(
 export const store = configureStore({
   reducer: {
     contact: persistedReducerContacts,
+    filter: persistReducerFilter,
   },
 
   // *** 2.persist ↓ копіюємо з з докум.Redux-Persist (для redux-persist)
